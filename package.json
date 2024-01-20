@@ -1,0 +1,19 @@
+{
+  "name": "@mearman/openalex-typescript-fetch",
+  "version": "0.0.8",
+  "description": "OpenAPI client for @mearman/openalex-typescript-fetch",
+  "author": "OpenAPI-Generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mearman/openalex-typescript-fetch.git"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0"
+  }
+}
