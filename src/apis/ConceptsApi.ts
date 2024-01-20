@@ -53,6 +53,7 @@ export interface GetConceptsRequest {
     perPage?: number;
     sample?: number;
     search?: string;
+    seed?: any;
     select?: string;
     sort?: string;
     userAgent?: any;
@@ -185,6 +186,10 @@ export class ConceptsApi extends runtime.BaseAPI {
 
         if (requestParameters.search !== undefined) {
             queryParameters['search'] = requestParameters.search;
+        }
+
+        if (requestParameters.seed !== undefined) {
+            queryParameters['seed'] = requestParameters.seed;
         }
 
         if (requestParameters.select !== undefined) {

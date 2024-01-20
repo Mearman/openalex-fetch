@@ -21,28 +21,28 @@ import { exists, mapValues } from '../runtime';
 export interface Apc {
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof Apc
      */
-    currency: string;
+    currency: any | null;
     /**
      * 
-     * @type {string}
+     * @type {any}
      * @memberof Apc
      */
-    provenance: string;
+    provenance: any | null;
     /**
      * 
-     * @type {number}
+     * @type {any}
      * @memberof Apc
      */
-    value: number;
+    value: any | null;
     /**
      * 
-     * @type {number}
+     * @type {any}
      * @memberof Apc
      */
-    valueUsd: number;
+    valueUsd: any | null;
 }
 
 /**

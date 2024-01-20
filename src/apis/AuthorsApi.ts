@@ -47,6 +47,7 @@ export interface GetAuthorsRequest {
     perPage?: number;
     sample?: number;
     search?: string;
+    seed?: any;
     select?: string;
     sort?: string;
     userAgent?: any;
@@ -151,6 +152,10 @@ export class AuthorsApi extends runtime.BaseAPI {
 
         if (requestParameters.search !== undefined) {
             queryParameters['search'] = requestParameters.search;
+        }
+
+        if (requestParameters.seed !== undefined) {
+            queryParameters['seed'] = requestParameters.seed;
         }
 
         if (requestParameters.select !== undefined) {

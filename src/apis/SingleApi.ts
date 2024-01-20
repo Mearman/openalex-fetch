@@ -15,19 +15,13 @@
 
 import * as runtime from '../runtime';
 import type {
-  BaseSelectionAttributes,
   ErrorMessage,
-  WorkAttributes,
   WorkNgramsSchema,
   WorkSchema,
 } from '../models/index';
 import {
-    BaseSelectionAttributesFromJSON,
-    BaseSelectionAttributesToJSON,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
-    WorkAttributesFromJSON,
-    WorkAttributesToJSON,
     WorkNgramsSchemaFromJSON,
     WorkNgramsSchemaToJSON,
     WorkSchemaFromJSON,
@@ -36,13 +30,13 @@ import {
 
 export interface GetWorkRequest {
     id: any;
-    select?: Array<WorkAttributes & BaseSelectionAttributes>;
+    select?: any;
     userAgent?: any;
     mailto?: any;
 }
 
 export interface GetWorkNgramsRequest {
-    id: string;
+    id: any;
     userAgent?: any;
     mailto?: any;
 }
@@ -63,8 +57,8 @@ export class SingleApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
-        if (requestParameters.select) {
-            queryParameters['select'] = requestParameters.select.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
         }
 
         if (requestParameters.mailto !== undefined) {

@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './AffiliationsInner';
 export * from './Apc';
 export * from './AssociatedInstitution';
 export * from './Author';

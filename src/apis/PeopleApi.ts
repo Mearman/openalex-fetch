@@ -26,7 +26,7 @@ import {
 } from '../models/index';
 
 export interface GetPersonRequest {
-    id: string;
+    id: any;
     select?: string;
     userAgent?: any;
     mailto?: any;

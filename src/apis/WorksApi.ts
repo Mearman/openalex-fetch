@@ -16,9 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   AutoCompleteResultSchema,
-  BaseSelectionAttributes,
   ErrorMessage,
-  WorkAttributes,
   WorkNgramsSchema,
   WorkSchema,
   WorksResponseSchema,
@@ -26,12 +24,8 @@ import type {
 import {
     AutoCompleteResultSchemaFromJSON,
     AutoCompleteResultSchemaToJSON,
-    BaseSelectionAttributesFromJSON,
-    BaseSelectionAttributesToJSON,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
-    WorkAttributesFromJSON,
-    WorkAttributesToJSON,
     WorkNgramsSchemaFromJSON,
     WorkNgramsSchemaToJSON,
     WorkSchemaFromJSON,
@@ -50,13 +44,13 @@ export interface GetAutocompleteWorksRequest {
 
 export interface GetWorkRequest {
     id: any;
-    select?: Array<WorkAttributes & BaseSelectionAttributes>;
+    select?: any;
     userAgent?: any;
     mailto?: any;
 }
 
 export interface GetWorkNgramsRequest {
-    id: string;
+    id: any;
     userAgent?: any;
     mailto?: any;
 }
@@ -64,7 +58,7 @@ export interface GetWorkNgramsRequest {
 export interface GetWorksRequest {
     apiKey?: string;
     cursor?: string;
-    filter?: string;
+    filter?: any;
     groupBy?: string;
     page?: number;
     perPage?: number;
@@ -140,8 +134,8 @@ export class WorksApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
-        if (requestParameters.select) {
-            queryParameters['select'] = requestParameters.select.join(runtime.COLLECTION_FORMATS["csv"]);
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
         }
 
         if (requestParameters.mailto !== undefined) {

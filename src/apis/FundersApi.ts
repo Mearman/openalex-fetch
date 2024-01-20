@@ -38,7 +38,7 @@ export interface GetAutocompleteFundersRequest {
 }
 
 export interface GetFunderRequest {
-    id: string;
+    id: any;
     select?: string;
     userAgent?: any;
     mailto?: any;
@@ -53,6 +53,7 @@ export interface GetFundersRequest {
     perPage?: number;
     sample?: number;
     search?: string;
+    seed?: any;
     select?: string;
     sort?: string;
     userAgent?: any;
@@ -185,6 +186,10 @@ export class FundersApi extends runtime.BaseAPI {
 
         if (requestParameters.search !== undefined) {
             queryParameters['search'] = requestParameters.search;
+        }
+
+        if (requestParameters.seed !== undefined) {
+            queryParameters['seed'] = requestParameters.seed;
         }
 
         if (requestParameters.select !== undefined) {

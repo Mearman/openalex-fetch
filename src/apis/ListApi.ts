@@ -28,7 +28,7 @@ import {
 export interface GetWorksRequest {
     apiKey?: string;
     cursor?: string;
-    filter?: string;
+    filter?: any;
     groupBy?: string;
     page?: number;
     perPage?: number;

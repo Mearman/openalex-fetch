@@ -13,12 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { AffiliationsInner } from './AffiliationsInner';
-import {
-    AffiliationsInnerFromJSON,
-    AffiliationsInnerFromJSONTyped,
-    AffiliationsInnerToJSON,
-} from './AffiliationsInner';
 import type { DehydratedInstitution } from './DehydratedInstitution';
 import {
     DehydratedInstitutionFromJSON,
@@ -46,10 +40,10 @@ import {
 export interface Author {
     /**
      * 
-     * @type {Array<AffiliationsInner>}
+     * @type {any}
      * @memberof Author
      */
-    affiliations?: Array<AffiliationsInner>;
+    affiliations?: any | null;
     /**
      * 
      * @type {any}
@@ -163,7 +157,7 @@ export function AuthorFromJSONTyped(json: any, ignoreDiscriminator: boolean): Au
     }
     return {
         
-        'affiliations': !exists(json, 'affiliations') ? undefined : ((json['affiliations'] as Array<any>).map(AffiliationsInnerFromJSON)),
+        'affiliations': !exists(json, 'affiliations') ? undefined : json['affiliations'],
         'citedByCount': !exists(json, 'cited_by_count') ? undefined : json['cited_by_count'],
         'countsByYear': !exists(json, 'counts_by_year') ? undefined : json['counts_by_year'],
         'createdDate': !exists(json, 'created_date') ? undefined : json['created_date'],
@@ -191,7 +185,7 @@ export function AuthorToJSON(value?: Author | null): any {
     }
     return {
         
-        'affiliations': value.affiliations === undefined ? undefined : ((value.affiliations as Array<any>).map(AffiliationsInnerToJSON)),
+        'affiliations': value.affiliations,
         'cited_by_count': value.citedByCount,
         'counts_by_year': value.countsByYear,
         'created_date': value.createdDate,

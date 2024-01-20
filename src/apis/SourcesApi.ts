@@ -38,7 +38,7 @@ export interface GetAutocompleteSourcesRequest {
 }
 
 export interface GetSourceRequest {
-    id: string;
+    id: any;
     select?: string;
     userAgent?: any;
     mailto?: any;

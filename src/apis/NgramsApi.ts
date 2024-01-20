@@ -26,7 +26,7 @@ import {
 } from '../models/index';
 
 export interface GetWorkNgramsRequest {
-    id: string;
+    id: any;
     userAgent?: any;
     mailto?: any;
 }
