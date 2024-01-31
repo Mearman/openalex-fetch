@@ -236,7 +236,7 @@ export class AuthorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a single author by id
+     * Get a random author
      * Get Random Author
      */
     async getRandomAuthorRaw(requestParameters: GetRandomAuthorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Author>> {
@@ -267,7 +267,7 @@ export class AuthorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a single author by id
+     * Get a random author
      * Get Random Author
      */
     async getRandomAuthor(requestParameters: GetRandomAuthorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Author> {

@@ -15,15 +15,69 @@
 
 import * as runtime from '../runtime';
 import type {
+  Author,
+  Concept,
   ErrorMessage,
+  FunderSchema,
+  InstitutionSchema,
+  PublisherSchema,
+  SourceSchema,
   WorkSchema,
 } from '../models/index';
 import {
+    AuthorFromJSON,
+    AuthorToJSON,
+    ConceptFromJSON,
+    ConceptToJSON,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
+    FunderSchemaFromJSON,
+    FunderSchemaToJSON,
+    InstitutionSchemaFromJSON,
+    InstitutionSchemaToJSON,
+    PublisherSchemaFromJSON,
+    PublisherSchemaToJSON,
+    SourceSchemaFromJSON,
+    SourceSchemaToJSON,
     WorkSchemaFromJSON,
     WorkSchemaToJSON,
 } from '../models/index';
+
+export interface GetRandomAuthorRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetRandomConceptRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetRandomFunderRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetRandomInstitutionRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetRandomPublisherRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetRandomSourceRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
 
 export interface GetRandomWorkRequest {
     select?: any;
@@ -35,6 +89,246 @@ export interface GetRandomWorkRequest {
  * 
  */
 export class RandomApi extends runtime.BaseAPI {
+
+    /**
+     * Get a random author
+     * Get Random Author
+     */
+    async getRandomAuthorRaw(requestParameters: GetRandomAuthorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Author>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/authors/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthorFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random author
+     * Get Random Author
+     */
+    async getRandomAuthor(requestParameters: GetRandomAuthorRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Author> {
+        const response = await this.getRandomAuthorRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random concept
+     * /concepts/random
+     */
+    async getRandomConceptRaw(requestParameters: GetRandomConceptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Concept>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/concepts/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConceptFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random concept
+     * /concepts/random
+     */
+    async getRandomConcept(requestParameters: GetRandomConceptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Concept> {
+        const response = await this.getRandomConceptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random funder
+     * /funders/random
+     */
+    async getRandomFunderRaw(requestParameters: GetRandomFunderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FunderSchema>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/funders/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FunderSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random funder
+     * /funders/random
+     */
+    async getRandomFunder(requestParameters: GetRandomFunderRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FunderSchema> {
+        const response = await this.getRandomFunderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random institution
+     * /institutions/random
+     */
+    async getRandomInstitutionRaw(requestParameters: GetRandomInstitutionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InstitutionSchema>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/institutions/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => InstitutionSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random institution
+     * /institutions/random
+     */
+    async getRandomInstitution(requestParameters: GetRandomInstitutionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InstitutionSchema> {
+        const response = await this.getRandomInstitutionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random publisher
+     * /publishers/random
+     */
+    async getRandomPublisherRaw(requestParameters: GetRandomPublisherRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublisherSchema>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/publishers/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PublisherSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random publisher
+     * /publishers/random
+     */
+    async getRandomPublisher(requestParameters: GetRandomPublisherRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublisherSchema> {
+        const response = await this.getRandomPublisherRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random source
+     * /sources/random
+     */
+    async getRandomSourceRaw(requestParameters: GetRandomSourceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SourceSchema>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/sources/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SourceSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random source
+     * /sources/random
+     */
+    async getRandomSource(requestParameters: GetRandomSourceRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SourceSchema> {
+        const response = await this.getRandomSourceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Get a random work
