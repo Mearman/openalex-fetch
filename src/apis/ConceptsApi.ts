@@ -60,6 +60,12 @@ export interface GetConceptsRequest {
     mailto?: any;
 }
 
+export interface GetRandomConceptRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
 /**
  * 
  */
@@ -226,6 +232,46 @@ export class ConceptsApi extends runtime.BaseAPI {
      */
     async getConcepts(requestParameters: GetConceptsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConceptsResponseSchema> {
         const response = await this.getConceptsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random concept
+     * /concepts/random
+     */
+    async getRandomConceptRaw(requestParameters: GetRandomConceptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Concept>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/concepts/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConceptFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random concept
+     * /concepts/random
+     */
+    async getRandomConcept(requestParameters: GetRandomConceptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Concept> {
+        const response = await this.getRandomConceptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
