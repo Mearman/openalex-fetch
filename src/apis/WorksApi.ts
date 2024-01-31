@@ -42,6 +42,12 @@ export interface GetAutocompleteWorksRequest {
     mailto?: any;
 }
 
+export interface GetRandomWorkRequest {
+    select?: any;
+    userAgent?: any;
+    mailto?: any;
+}
+
 export interface GetWorkRequest {
     id: any;
     select?: any;
@@ -121,6 +127,46 @@ export class WorksApi extends runtime.BaseAPI {
      */
     async getAutocompleteWorks(requestParameters: GetAutocompleteWorksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoCompleteResultSchema> {
         const response = await this.getAutocompleteWorksRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random work
+     * /works/random
+     */
+    async getRandomWorkRaw(requestParameters: GetRandomWorkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkSchema>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/works/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WorkSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random work
+     * /works/random
+     */
+    async getRandomWork(requestParameters: GetRandomWorkRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkSchema> {
+        const response = await this.getRandomWorkRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -10,6 +10,7 @@ export * from './ListApi';
 export * from './NgramsApi';
 export * from './PeopleApi';
 export * from './PublishersApi';
+export * from './RandomApi';
 export * from './SingleApi';
 export * from './SourcesApi';
 export * from './WorksApi';

@@ -12,6 +12,7 @@ src/apis/ListApi.ts
 src/apis/NgramsApi.ts
 src/apis/PeopleApi.ts
 src/apis/PublishersApi.ts
+src/apis/RandomApi.ts
 src/apis/SingleApi.ts
 src/apis/SourcesApi.ts
 src/apis/WorksApi.ts

@@ -60,6 +60,12 @@ export interface GetInstitutionsRequest {
     mailto?: any;
 }
 
+export interface GetRandomInstitutionRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
 /**
  * 
  */
@@ -226,6 +232,46 @@ export class InstitutionsApi extends runtime.BaseAPI {
      */
     async getInstitutions(requestParameters: GetInstitutionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InstitutionsResponseSchema> {
         const response = await this.getInstitutionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random institution
+     * /institutions/random
+     */
+    async getRandomInstitutionRaw(requestParameters: GetRandomInstitutionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InstitutionSchema>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/institutions/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => InstitutionSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random institution
+     * /institutions/random
+     */
+    async getRandomInstitution(requestParameters: GetRandomInstitutionRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InstitutionSchema> {
+        const response = await this.getRandomInstitutionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

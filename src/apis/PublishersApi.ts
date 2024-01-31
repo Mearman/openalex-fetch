@@ -60,6 +60,12 @@ export interface GetPublishersRequest {
     mailto?: any;
 }
 
+export interface GetRandomPublisherRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
 /**
  * 
  */
@@ -226,6 +232,46 @@ export class PublishersApi extends runtime.BaseAPI {
      */
     async getPublishers(requestParameters: GetPublishersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublishersResponseSchema> {
         const response = await this.getPublishersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random publisher
+     * /publishers/random
+     */
+    async getRandomPublisherRaw(requestParameters: GetRandomPublisherRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PublisherSchema>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/publishers/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PublisherSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random publisher
+     * /publishers/random
+     */
+    async getRandomPublisher(requestParameters: GetRandomPublisherRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PublisherSchema> {
+        const response = await this.getRandomPublisherRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

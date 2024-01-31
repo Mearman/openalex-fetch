@@ -37,6 +37,12 @@ export interface GetAutocompleteSourcesRequest {
     mailto?: any;
 }
 
+export interface GetRandomSourceRequest {
+    select?: string;
+    userAgent?: any;
+    mailto?: any;
+}
+
 export interface GetSourceRequest {
     id: any;
     select?: string;
@@ -92,6 +98,46 @@ export class SourcesApi extends runtime.BaseAPI {
      */
     async getAutocompleteSources(requestParameters: GetAutocompleteSourcesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoCompleteResultSchema> {
         const response = await this.getAutocompleteSourcesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a random source
+     * /sources/random
+     */
+    async getRandomSourceRaw(requestParameters: GetRandomSourceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SourceSchema>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/sources/random`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SourceSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a random source
+     * /sources/random
+     */
+    async getRandomSource(requestParameters: GetRandomSourceRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SourceSchema> {
+        const response = await this.getRandomSourceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
