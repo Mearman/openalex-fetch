@@ -16,69 +16,29 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface SummaryStats
+ * @interface TopicLevelSchemaId
  */
-export interface SummaryStats {
-    /**
-     * 
-     * @type {any}
-     * @memberof SummaryStats
-     */
-    _2yrMeanCitedness: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof SummaryStats
-     */
-    hIndex: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof SummaryStats
-     */
-    i10Index: any | null;
+export interface TopicLevelSchemaId {
 }
 
 /**
- * Check if a given object implements the SummaryStats interface.
+ * Check if a given object implements the TopicLevelSchemaId interface.
  */
-export function instanceOfSummaryStats(value: object): boolean {
+export function instanceOfTopicLevelSchemaId(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "_2yrMeanCitedness" in value;
-    isInstance = isInstance && "hIndex" in value;
-    isInstance = isInstance && "i10Index" in value;
 
     return isInstance;
 }
 
-export function SummaryStatsFromJSON(json: any): SummaryStats {
-    return SummaryStatsFromJSONTyped(json, false);
+export function TopicLevelSchemaIdFromJSON(json: any): TopicLevelSchemaId {
+    return TopicLevelSchemaIdFromJSONTyped(json, false);
 }
 
-export function SummaryStatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SummaryStats {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        '_2yrMeanCitedness': json['2yr_mean_citedness'],
-        'hIndex': json['h_index'],
-        'i10Index': json['i10_index'],
-    };
+export function TopicLevelSchemaIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): TopicLevelSchemaId {
+    return json;
 }
 
-export function SummaryStatsToJSON(value?: SummaryStats | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        '2yr_mean_citedness': value._2yrMeanCitedness,
-        'h_index': value.hIndex,
-        'i10_index': value.i10Index,
-    };
+export function TopicLevelSchemaIdToJSON(value?: TopicLevelSchemaId | null): any {
+    return value;
 }
 

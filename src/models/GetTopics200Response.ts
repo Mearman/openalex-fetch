@@ -13,61 +13,67 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { GetTopics200ResponseMeta } from './GetTopics200ResponseMeta';
+import {
+    GetTopics200ResponseMetaFromJSON,
+    GetTopics200ResponseMetaFromJSONTyped,
+    GetTopics200ResponseMetaToJSON,
+} from './GetTopics200ResponseMeta';
+
 /**
  * 
  * @export
- * @interface SummaryStats
+ * @interface GetTopics200Response
  */
-export interface SummaryStats {
+export interface GetTopics200Response {
     /**
      * 
      * @type {any}
-     * @memberof SummaryStats
+     * @memberof GetTopics200Response
      */
-    _2yrMeanCitedness: any | null;
+    groupBy: any | null;
+    /**
+     * 
+     * @type {GetTopics200ResponseMeta}
+     * @memberof GetTopics200Response
+     */
+    meta: GetTopics200ResponseMeta;
     /**
      * 
      * @type {any}
-     * @memberof SummaryStats
+     * @memberof GetTopics200Response
      */
-    hIndex: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof SummaryStats
-     */
-    i10Index: any | null;
+    results?: any | null;
 }
 
 /**
- * Check if a given object implements the SummaryStats interface.
+ * Check if a given object implements the GetTopics200Response interface.
  */
-export function instanceOfSummaryStats(value: object): boolean {
+export function instanceOfGetTopics200Response(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "_2yrMeanCitedness" in value;
-    isInstance = isInstance && "hIndex" in value;
-    isInstance = isInstance && "i10Index" in value;
+    isInstance = isInstance && "groupBy" in value;
+    isInstance = isInstance && "meta" in value;
 
     return isInstance;
 }
 
-export function SummaryStatsFromJSON(json: any): SummaryStats {
-    return SummaryStatsFromJSONTyped(json, false);
+export function GetTopics200ResponseFromJSON(json: any): GetTopics200Response {
+    return GetTopics200ResponseFromJSONTyped(json, false);
 }
 
-export function SummaryStatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SummaryStats {
+export function GetTopics200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTopics200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        '_2yrMeanCitedness': json['2yr_mean_citedness'],
-        'hIndex': json['h_index'],
-        'i10Index': json['i10_index'],
+        'groupBy': json['group_by'],
+        'meta': GetTopics200ResponseMetaFromJSON(json['meta']),
+        'results': !exists(json, 'results') ? undefined : json['results'],
     };
 }
 
-export function SummaryStatsToJSON(value?: SummaryStats | null): any {
+export function GetTopics200ResponseToJSON(value?: GetTopics200Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -76,9 +82,9 @@ export function SummaryStatsToJSON(value?: SummaryStats | null): any {
     }
     return {
         
-        '2yr_mean_citedness': value._2yrMeanCitedness,
-        'h_index': value.hIndex,
-        'i10_index': value.i10Index,
+        'group_by': value.groupBy,
+        'meta': GetTopics200ResponseMetaToJSON(value.meta),
+        'results': value.results,
     };
 }
 

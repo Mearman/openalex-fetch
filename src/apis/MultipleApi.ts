@@ -15,55 +15,32 @@
 
 import * as runtime from '../runtime';
 import type {
-  AutoCompleteResultSchema,
+  ConceptsResponseSchema,
   ErrorMessage,
-  WorkNgramsSchema,
-  WorkSchema,
-  WorksResponseSchema,
+  GetDomainById200Response,
+  GetFieldById200Response,
+  GetSubfieldById200Response,
+  GetTopics200Response,
 } from '../models/index';
 import {
-    AutoCompleteResultSchemaFromJSON,
-    AutoCompleteResultSchemaToJSON,
+    ConceptsResponseSchemaFromJSON,
+    ConceptsResponseSchemaToJSON,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
-    WorkNgramsSchemaFromJSON,
-    WorkNgramsSchemaToJSON,
-    WorkSchemaFromJSON,
-    WorkSchemaToJSON,
-    WorksResponseSchemaFromJSON,
-    WorksResponseSchemaToJSON,
+    GetDomainById200ResponseFromJSON,
+    GetDomainById200ResponseToJSON,
+    GetFieldById200ResponseFromJSON,
+    GetFieldById200ResponseToJSON,
+    GetSubfieldById200ResponseFromJSON,
+    GetSubfieldById200ResponseToJSON,
+    GetTopics200ResponseFromJSON,
+    GetTopics200ResponseToJSON,
 } from '../models/index';
 
-export interface GetAutocompleteWorksRequest {
-    filter?: string;
-    search?: string;
-    q?: string;
-    userAgent?: any;
-    mailto?: any;
-}
-
-export interface GetRandomWorkRequest {
-    select?: any;
-    userAgent?: any;
-    mailto?: any;
-}
-
-export interface GetWorkRequest {
-    id: any;
-    select?: any;
-    userAgent?: any;
-    mailto?: any;
-}
-
-export interface GetWorkNgramsRequest {
-    id: any;
-    userAgent?: any;
-    mailto?: any;
-}
-
-export interface GetWorksRequest {
+export interface GetConceptsRequest {
     apiKey?: string;
     cursor?: string;
+    filter?: string;
     groupBy?: string;
     page?: number;
     perPage?: number;
@@ -72,7 +49,40 @@ export interface GetWorksRequest {
     seed?: any;
     select?: string;
     sort?: string;
-    filter?: any;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetDomainByIdRequest {
+    id: any;
+    perPage?: number;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetFieldByIdRequest {
+    id: any;
+    perPage?: number;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetSubfieldByIdRequest {
+    id: any;
+    perPage?: number;
+    userAgent?: any;
+    mailto?: any;
+}
+
+export interface GetTopicsRequest {
+    sort?: string;
+    perPage?: number;
+    page?: any;
+    sample?: any;
+    select?: string;
+    filter?: string;
+    search?: string;
+    groupBy?: string;
     userAgent?: any;
     mailto?: any;
 }
@@ -80,185 +90,13 @@ export interface GetWorksRequest {
 /**
  * 
  */
-export class WorksApi extends runtime.BaseAPI {
+export class MultipleApi extends runtime.BaseAPI {
 
     /**
      * 
-     * /autocomplete/works
+     * /concepts
      */
-    async getAutocompleteWorksRaw(requestParameters: GetAutocompleteWorksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoCompleteResultSchema>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.filter !== undefined) {
-            queryParameters['filter'] = requestParameters.filter;
-        }
-
-        if (requestParameters.search !== undefined) {
-            queryParameters['search'] = requestParameters.search;
-        }
-
-        if (requestParameters.q !== undefined) {
-            queryParameters['q'] = requestParameters.q;
-        }
-
-        if (requestParameters.mailto !== undefined) {
-            queryParameters['mailto'] = requestParameters.mailto;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
-            headerParameters['User-Agent'] = String(requestParameters.userAgent);
-        }
-
-        const response = await this.request({
-            path: `/autocomplete/works`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AutoCompleteResultSchemaFromJSON(jsonValue));
-    }
-
-    /**
-     * 
-     * /autocomplete/works
-     */
-    async getAutocompleteWorks(requestParameters: GetAutocompleteWorksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoCompleteResultSchema> {
-        const response = await this.getAutocompleteWorksRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get a random work
-     * /works/random
-     */
-    async getRandomWorkRaw(requestParameters: GetRandomWorkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkSchema>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.select !== undefined) {
-            queryParameters['select'] = requestParameters.select;
-        }
-
-        if (requestParameters.mailto !== undefined) {
-            queryParameters['mailto'] = requestParameters.mailto;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
-            headerParameters['User-Agent'] = String(requestParameters.userAgent);
-        }
-
-        const response = await this.request({
-            path: `/works/random`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorkSchemaFromJSON(jsonValue));
-    }
-
-    /**
-     * Get a random work
-     * /works/random
-     */
-    async getRandomWork(requestParameters: GetRandomWorkRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkSchema> {
-        const response = await this.getRandomWorkRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get a single work by its id
-     * /works/{id}
-     */
-    async getWorkRaw(requestParameters: GetWorkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkSchema>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getWork.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.select !== undefined) {
-            queryParameters['select'] = requestParameters.select;
-        }
-
-        if (requestParameters.mailto !== undefined) {
-            queryParameters['mailto'] = requestParameters.mailto;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
-            headerParameters['User-Agent'] = String(requestParameters.userAgent);
-        }
-
-        const response = await this.request({
-            path: `/works/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorkSchemaFromJSON(jsonValue));
-    }
-
-    /**
-     * Get a single work by its id
-     * /works/{id}
-     */
-    async getWork(requestParameters: GetWorkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkSchema> {
-        const response = await this.getWorkRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * 
-     * /works/{id}/ngrams
-     */
-    async getWorkNgramsRaw(requestParameters: GetWorkNgramsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkNgramsSchema>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getWorkNgrams.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.mailto !== undefined) {
-            queryParameters['mailto'] = requestParameters.mailto;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
-            headerParameters['User-Agent'] = String(requestParameters.userAgent);
-        }
-
-        const response = await this.request({
-            path: `/works/{id}/ngrams`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorkNgramsSchemaFromJSON(jsonValue));
-    }
-
-    /**
-     * 
-     * /works/{id}/ngrams
-     */
-    async getWorkNgrams(requestParameters: GetWorkNgramsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkNgramsSchema> {
-        const response = await this.getWorkNgramsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * 
-     * /works
-     */
-    async getWorksRaw(requestParameters: GetWorksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorksResponseSchema>> {
+    async getConceptsRaw(requestParameters: GetConceptsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConceptsResponseSchema>> {
         const queryParameters: any = {};
 
         if (requestParameters.apiKey !== undefined) {
@@ -267,6 +105,10 @@ export class WorksApi extends runtime.BaseAPI {
 
         if (requestParameters.cursor !== undefined) {
             queryParameters['cursor'] = requestParameters.cursor;
+        }
+
+        if (requestParameters.filter !== undefined) {
+            queryParameters['filter'] = requestParameters.filter;
         }
 
         if (requestParameters.groupBy !== undefined) {
@@ -301,8 +143,48 @@ export class WorksApi extends runtime.BaseAPI {
             queryParameters['sort'] = requestParameters.sort;
         }
 
-        if (requestParameters.filter !== undefined) {
-            queryParameters['filter'] = requestParameters.filter;
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/concepts`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConceptsResponseSchemaFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     * /concepts
+     */
+    async getConcepts(requestParameters: GetConceptsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConceptsResponseSchema> {
+        const response = await this.getConceptsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * /domains/{id}
+     */
+    async getDomainByIdRaw(requestParameters: GetDomainByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDomainById200Response>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getDomainById.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.perPage !== undefined) {
+            queryParameters['per_page'] = requestParameters.perPage;
         }
 
         if (requestParameters.mailto !== undefined) {
@@ -316,21 +198,177 @@ export class WorksApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/works`,
+            path: `/domains/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorksResponseSchemaFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetDomainById200ResponseFromJSON(jsonValue));
     }
 
     /**
      * 
-     * /works
+     * /domains/{id}
      */
-    async getWorks(requestParameters: GetWorksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorksResponseSchema> {
-        const response = await this.getWorksRaw(requestParameters, initOverrides);
+    async getDomainById(requestParameters: GetDomainByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetDomainById200Response> {
+        const response = await this.getDomainByIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * /fields/{id}
+     */
+    async getFieldByIdRaw(requestParameters: GetFieldByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFieldById200Response>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getFieldById.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.perPage !== undefined) {
+            queryParameters['per_page'] = requestParameters.perPage;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/field/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetFieldById200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     * /fields/{id}
+     */
+    async getFieldById(requestParameters: GetFieldByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFieldById200Response> {
+        const response = await this.getFieldByIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * /subfields/{id}
+     */
+    async getSubfieldByIdRaw(requestParameters: GetSubfieldByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSubfieldById200Response>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getSubfieldById.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.perPage !== undefined) {
+            queryParameters['per_page'] = requestParameters.perPage;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/subfields/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetSubfieldById200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     * /subfields/{id}
+     */
+    async getSubfieldById(requestParameters: GetSubfieldByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSubfieldById200Response> {
+        const response = await this.getSubfieldByIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * /topics
+     */
+    async getTopicsRaw(requestParameters: GetTopicsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTopics200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.sort !== undefined) {
+            queryParameters['sort'] = requestParameters.sort;
+        }
+
+        if (requestParameters.perPage !== undefined) {
+            queryParameters['per_page'] = requestParameters.perPage;
+        }
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        if (requestParameters.sample !== undefined) {
+            queryParameters['sample'] = requestParameters.sample;
+        }
+
+        if (requestParameters.select !== undefined) {
+            queryParameters['select'] = requestParameters.select;
+        }
+
+        if (requestParameters.filter !== undefined) {
+            queryParameters['filter'] = requestParameters.filter;
+        }
+
+        if (requestParameters.search !== undefined) {
+            queryParameters['search'] = requestParameters.search;
+        }
+
+        if (requestParameters.groupBy !== undefined) {
+            queryParameters['group_by'] = requestParameters.groupBy;
+        }
+
+        if (requestParameters.mailto !== undefined) {
+            queryParameters['mailto'] = requestParameters.mailto;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.userAgent !== undefined && requestParameters.userAgent !== null) {
+            headerParameters['User-Agent'] = String(requestParameters.userAgent);
+        }
+
+        const response = await this.request({
+            path: `/topics`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTopics200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     * /topics
+     */
+    async getTopics(requestParameters: GetTopicsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTopics200Response> {
+        const response = await this.getTopicsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

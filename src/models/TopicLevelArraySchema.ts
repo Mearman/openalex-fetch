@@ -16,58 +16,41 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface SummaryStats
+ * @interface TopicLevelArraySchema
  */
-export interface SummaryStats {
+export interface TopicLevelArraySchema {
     /**
      * 
      * @type {any}
-     * @memberof SummaryStats
+     * @memberof TopicLevelArraySchema
      */
-    _2yrMeanCitedness: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof SummaryStats
-     */
-    hIndex: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof SummaryStats
-     */
-    i10Index: any | null;
+    siblings?: any | null;
 }
 
 /**
- * Check if a given object implements the SummaryStats interface.
+ * Check if a given object implements the TopicLevelArraySchema interface.
  */
-export function instanceOfSummaryStats(value: object): boolean {
+export function instanceOfTopicLevelArraySchema(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "_2yrMeanCitedness" in value;
-    isInstance = isInstance && "hIndex" in value;
-    isInstance = isInstance && "i10Index" in value;
 
     return isInstance;
 }
 
-export function SummaryStatsFromJSON(json: any): SummaryStats {
-    return SummaryStatsFromJSONTyped(json, false);
+export function TopicLevelArraySchemaFromJSON(json: any): TopicLevelArraySchema {
+    return TopicLevelArraySchemaFromJSONTyped(json, false);
 }
 
-export function SummaryStatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SummaryStats {
+export function TopicLevelArraySchemaFromJSONTyped(json: any, ignoreDiscriminator: boolean): TopicLevelArraySchema {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        '_2yrMeanCitedness': json['2yr_mean_citedness'],
-        'hIndex': json['h_index'],
-        'i10Index': json['i10_index'],
+        'siblings': !exists(json, 'siblings') ? undefined : json['siblings'],
     };
 }
 
-export function SummaryStatsToJSON(value?: SummaryStats | null): any {
+export function TopicLevelArraySchemaToJSON(value?: TopicLevelArraySchema | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -76,9 +59,7 @@ export function SummaryStatsToJSON(value?: SummaryStats | null): any {
     }
     return {
         
-        '2yr_mean_citedness': value._2yrMeanCitedness,
-        'h_index': value.hIndex,
-        'i10_index': value.i10Index,
+        'siblings': value.siblings,
     };
 }
 

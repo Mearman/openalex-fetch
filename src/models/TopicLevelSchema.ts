@@ -13,61 +13,60 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TopicLevelSchemaId } from './TopicLevelSchemaId';
+import {
+    TopicLevelSchemaIdFromJSON,
+    TopicLevelSchemaIdFromJSONTyped,
+    TopicLevelSchemaIdToJSON,
+} from './TopicLevelSchemaId';
+
 /**
  * 
  * @export
- * @interface SummaryStats
+ * @interface TopicLevelSchema
  */
-export interface SummaryStats {
+export interface TopicLevelSchema {
     /**
      * 
      * @type {any}
-     * @memberof SummaryStats
+     * @memberof TopicLevelSchema
      */
-    _2yrMeanCitedness: any | null;
+    displayName: any | null;
     /**
      * 
-     * @type {any}
-     * @memberof SummaryStats
+     * @type {TopicLevelSchemaId}
+     * @memberof TopicLevelSchema
      */
-    hIndex: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof SummaryStats
-     */
-    i10Index: any | null;
+    id: TopicLevelSchemaId;
 }
 
 /**
- * Check if a given object implements the SummaryStats interface.
+ * Check if a given object implements the TopicLevelSchema interface.
  */
-export function instanceOfSummaryStats(value: object): boolean {
+export function instanceOfTopicLevelSchema(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "_2yrMeanCitedness" in value;
-    isInstance = isInstance && "hIndex" in value;
-    isInstance = isInstance && "i10Index" in value;
+    isInstance = isInstance && "displayName" in value;
+    isInstance = isInstance && "id" in value;
 
     return isInstance;
 }
 
-export function SummaryStatsFromJSON(json: any): SummaryStats {
-    return SummaryStatsFromJSONTyped(json, false);
+export function TopicLevelSchemaFromJSON(json: any): TopicLevelSchema {
+    return TopicLevelSchemaFromJSONTyped(json, false);
 }
 
-export function SummaryStatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SummaryStats {
+export function TopicLevelSchemaFromJSONTyped(json: any, ignoreDiscriminator: boolean): TopicLevelSchema {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        '_2yrMeanCitedness': json['2yr_mean_citedness'],
-        'hIndex': json['h_index'],
-        'i10Index': json['i10_index'],
+        'displayName': json['display_name'],
+        'id': TopicLevelSchemaIdFromJSON(json['id']),
     };
 }
 
-export function SummaryStatsToJSON(value?: SummaryStats | null): any {
+export function TopicLevelSchemaToJSON(value?: TopicLevelSchema | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -76,9 +75,8 @@ export function SummaryStatsToJSON(value?: SummaryStats | null): any {
     }
     return {
         
-        '2yr_mean_citedness': value._2yrMeanCitedness,
-        'h_index': value.hIndex,
-        'i10_index': value.i10Index,
+        'display_name': value.displayName,
+        'id': TopicLevelSchemaIdToJSON(value.id),
     };
 }
 

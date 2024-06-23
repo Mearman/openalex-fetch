@@ -13,170 +13,160 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { DehydratedInstitution } from './DehydratedInstitution';
-import {
-    DehydratedInstitutionFromJSON,
-    DehydratedInstitutionFromJSONTyped,
-    DehydratedInstitutionToJSON,
-} from './DehydratedInstitution';
 import type { Ids } from './Ids';
 import {
     IdsFromJSON,
     IdsFromJSONTyped,
     IdsToJSON,
 } from './Ids';
-import type { SummaryStats } from './SummaryStats';
+import type { TopicLevelArraySchema } from './TopicLevelArraySchema';
 import {
-    SummaryStatsFromJSON,
-    SummaryStatsFromJSONTyped,
-    SummaryStatsToJSON,
-} from './SummaryStats';
+    TopicLevelArraySchemaFromJSON,
+    TopicLevelArraySchemaFromJSONTyped,
+    TopicLevelArraySchemaToJSON,
+} from './TopicLevelArraySchema';
+import type { TopicLevelSchema } from './TopicLevelSchema';
+import {
+    TopicLevelSchemaFromJSON,
+    TopicLevelSchemaFromJSONTyped,
+    TopicLevelSchemaToJSON,
+} from './TopicLevelSchema';
 
 /**
  * 
  * @export
- * @interface Author
+ * @interface GetFieldById200Response
  */
-export interface Author {
+export interface GetFieldById200Response {
     /**
      * 
      * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
-    affiliations?: any | null;
+    citedByCount: any | null;
     /**
      * 
      * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
-    citedByCount?: any | null;
+    createdDate: any | null;
     /**
      * 
      * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
-    countsByYear?: any | null;
+    description: any | null;
     /**
      * 
      * @type {any}
-     * @memberof Author
-     */
-    createdDate?: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
     displayName: any | null;
     /**
      * 
      * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
-    displayNameAlternatives?: any | null;
+    displayNameAlternatives: any | null;
+    /**
+     * 
+     * @type {TopicLevelSchema}
+     * @memberof GetFieldById200Response
+     */
+    domain: TopicLevelSchema;
     /**
      * 
      * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
     id: any | null;
     /**
      * 
      * @type {Ids}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
-    ids?: Ids;
+    ids: Ids;
     /**
      * 
-     * @type {DehydratedInstitution}
-     * @memberof Author
+     * @type {TopicLevelArraySchema}
+     * @memberof GetFieldById200Response
      */
-    lastKnownInstitution?: DehydratedInstitution;
+    siblings: TopicLevelArraySchema;
     /**
      * 
-     * @type {any}
-     * @memberof Author
+     * @type {TopicLevelArraySchema}
+     * @memberof GetFieldById200Response
      */
-    lastKnownInstitutions?: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof Author
-     */
-    orcid?: any | null;
-    /**
-     * 
-     * @type {SummaryStats}
-     * @memberof Author
-     */
-    summaryStats?: SummaryStats;
+    subfields: TopicLevelArraySchema;
     /**
      * 
      * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
-    updatedDate?: any | null;
+    updatedDate: any | null;
     /**
      * 
      * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
-    worksApiUrl?: any | null;
+    worksApiUrl: any | null;
     /**
      * 
      * @type {any}
-     * @memberof Author
+     * @memberof GetFieldById200Response
      */
-    worksCount?: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof Author
-     */
-    xConcepts?: any | null;
+    worksCount: any | null;
 }
 
 /**
- * Check if a given object implements the Author interface.
+ * Check if a given object implements the GetFieldById200Response interface.
  */
-export function instanceOfAuthor(value: object): boolean {
+export function instanceOfGetFieldById200Response(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "citedByCount" in value;
+    isInstance = isInstance && "createdDate" in value;
+    isInstance = isInstance && "description" in value;
     isInstance = isInstance && "displayName" in value;
+    isInstance = isInstance && "displayNameAlternatives" in value;
+    isInstance = isInstance && "domain" in value;
     isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "ids" in value;
+    isInstance = isInstance && "siblings" in value;
+    isInstance = isInstance && "subfields" in value;
+    isInstance = isInstance && "updatedDate" in value;
+    isInstance = isInstance && "worksApiUrl" in value;
+    isInstance = isInstance && "worksCount" in value;
 
     return isInstance;
 }
 
-export function AuthorFromJSON(json: any): Author {
-    return AuthorFromJSONTyped(json, false);
+export function GetFieldById200ResponseFromJSON(json: any): GetFieldById200Response {
+    return GetFieldById200ResponseFromJSONTyped(json, false);
 }
 
-export function AuthorFromJSONTyped(json: any, ignoreDiscriminator: boolean): Author {
+export function GetFieldById200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetFieldById200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'affiliations': !exists(json, 'affiliations') ? undefined : json['affiliations'],
-        'citedByCount': !exists(json, 'cited_by_count') ? undefined : json['cited_by_count'],
-        'countsByYear': !exists(json, 'counts_by_year') ? undefined : json['counts_by_year'],
-        'createdDate': !exists(json, 'created_date') ? undefined : json['created_date'],
+        'citedByCount': json['cited_by_count'],
+        'createdDate': json['created_date'],
+        'description': json['description'],
         'displayName': json['display_name'],
-        'displayNameAlternatives': !exists(json, 'display_name_alternatives') ? undefined : json['display_name_alternatives'],
+        'displayNameAlternatives': json['display_name_alternatives'],
+        'domain': TopicLevelSchemaFromJSON(json['domain']),
         'id': json['id'],
-        'ids': !exists(json, 'ids') ? undefined : IdsFromJSON(json['ids']),
-        'lastKnownInstitution': !exists(json, 'last_known_institution') ? undefined : DehydratedInstitutionFromJSON(json['last_known_institution']),
-        'lastKnownInstitutions': !exists(json, 'last_known_institutions') ? undefined : json['last_known_institutions'],
-        'orcid': !exists(json, 'orcid') ? undefined : json['orcid'],
-        'summaryStats': !exists(json, 'summary_stats') ? undefined : SummaryStatsFromJSON(json['summary_stats']),
-        'updatedDate': !exists(json, 'updated_date') ? undefined : json['updated_date'],
-        'worksApiUrl': !exists(json, 'works_api_url') ? undefined : json['works_api_url'],
-        'worksCount': !exists(json, 'works_count') ? undefined : json['works_count'],
-        'xConcepts': !exists(json, 'x_concepts') ? undefined : json['x_concepts'],
+        'ids': IdsFromJSON(json['ids']),
+        'siblings': TopicLevelArraySchemaFromJSON(json['siblings']),
+        'subfields': TopicLevelArraySchemaFromJSON(json['subfields']),
+        'updatedDate': json['updated_date'],
+        'worksApiUrl': json['works_api_url'],
+        'worksCount': json['works_count'],
     };
 }
 
-export function AuthorToJSON(value?: Author | null): any {
+export function GetFieldById200ResponseToJSON(value?: GetFieldById200Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -185,22 +175,19 @@ export function AuthorToJSON(value?: Author | null): any {
     }
     return {
         
-        'affiliations': value.affiliations,
         'cited_by_count': value.citedByCount,
-        'counts_by_year': value.countsByYear,
         'created_date': value.createdDate,
+        'description': value.description,
         'display_name': value.displayName,
         'display_name_alternatives': value.displayNameAlternatives,
+        'domain': TopicLevelSchemaToJSON(value.domain),
         'id': value.id,
         'ids': IdsToJSON(value.ids),
-        'last_known_institution': DehydratedInstitutionToJSON(value.lastKnownInstitution),
-        'last_known_institutions': value.lastKnownInstitutions,
-        'orcid': value.orcid,
-        'summary_stats': SummaryStatsToJSON(value.summaryStats),
+        'siblings': TopicLevelArraySchemaToJSON(value.siblings),
+        'subfields': TopicLevelArraySchemaToJSON(value.subfields),
         'updated_date': value.updatedDate,
         'works_api_url': value.worksApiUrl,
         'works_count': value.worksCount,
-        'x_concepts': value.xConcepts,
     };
 }
 

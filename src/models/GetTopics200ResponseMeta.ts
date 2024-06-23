@@ -16,58 +16,74 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface SummaryStats
+ * @interface GetTopics200ResponseMeta
  */
-export interface SummaryStats {
+export interface GetTopics200ResponseMeta {
     /**
      * 
      * @type {any}
-     * @memberof SummaryStats
+     * @memberof GetTopics200ResponseMeta
      */
-    _2yrMeanCitedness: any | null;
+    count: any | null;
     /**
      * 
      * @type {any}
-     * @memberof SummaryStats
+     * @memberof GetTopics200ResponseMeta
      */
-    hIndex: any | null;
+    dbResponseTimeMs: any | null;
     /**
      * 
      * @type {any}
-     * @memberof SummaryStats
+     * @memberof GetTopics200ResponseMeta
      */
-    i10Index: any | null;
+    groupsCount: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTopics200ResponseMeta
+     */
+    page: any | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTopics200ResponseMeta
+     */
+    perPage: any | null;
 }
 
 /**
- * Check if a given object implements the SummaryStats interface.
+ * Check if a given object implements the GetTopics200ResponseMeta interface.
  */
-export function instanceOfSummaryStats(value: object): boolean {
+export function instanceOfGetTopics200ResponseMeta(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "_2yrMeanCitedness" in value;
-    isInstance = isInstance && "hIndex" in value;
-    isInstance = isInstance && "i10Index" in value;
+    isInstance = isInstance && "count" in value;
+    isInstance = isInstance && "dbResponseTimeMs" in value;
+    isInstance = isInstance && "groupsCount" in value;
+    isInstance = isInstance && "page" in value;
+    isInstance = isInstance && "perPage" in value;
 
     return isInstance;
 }
 
-export function SummaryStatsFromJSON(json: any): SummaryStats {
-    return SummaryStatsFromJSONTyped(json, false);
+export function GetTopics200ResponseMetaFromJSON(json: any): GetTopics200ResponseMeta {
+    return GetTopics200ResponseMetaFromJSONTyped(json, false);
 }
 
-export function SummaryStatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): SummaryStats {
+export function GetTopics200ResponseMetaFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTopics200ResponseMeta {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        '_2yrMeanCitedness': json['2yr_mean_citedness'],
-        'hIndex': json['h_index'],
-        'i10Index': json['i10_index'],
+        'count': json['count'],
+        'dbResponseTimeMs': json['db_response_time_ms'],
+        'groupsCount': json['groups_count'],
+        'page': json['page'],
+        'perPage': json['per_page'],
     };
 }
 
-export function SummaryStatsToJSON(value?: SummaryStats | null): any {
+export function GetTopics200ResponseMetaToJSON(value?: GetTopics200ResponseMeta | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -76,9 +92,11 @@ export function SummaryStatsToJSON(value?: SummaryStats | null): any {
     }
     return {
         
-        '2yr_mean_citedness': value._2yrMeanCitedness,
-        'h_index': value.hIndex,
-        'i10_index': value.i10Index,
+        'count': value.count,
+        'db_response_time_ms': value.dbResponseTimeMs,
+        'groups_count': value.groupsCount,
+        'page': value.page,
+        'per_page': value.perPage,
     };
 }
 
