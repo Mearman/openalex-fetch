@@ -1,23 +1,19 @@
 {
-	"name": "openalex",
-	"version": "0.2.2",
-	"description": "OpenAPI client for @mearman/openalex-typescript-fetch",
-	"author": "OpenAPI-Generator",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Mearman/openalex-typescript-fetch.git"
-	},
-	"include": [
-		"dist/**/*",
-		"src/**/*"
-	],
-	"main": "./dist/index.js",
-	"typings": "./dist/index.d.ts",
-	"scripts": {
-		"build": "tsc",
-		"prepare": "npm run build"
-	},
-	"devDependencies": {
-		"typescript": "^4.0"
-	}
+  "name": "openalex",
+  "version": "0.2.3",
+  "description": "OpenAPI client for openalex",
+  "author": "OpenAPI-Generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mearman/openalex-typescript-fetch.git"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0"
+  }
 }
