@@ -23,55 +23,57 @@ import {
 /**
  * 
  * @export
- * @interface ConceptsResponseSchema
+ * @interface WorksResponse
  */
-export interface ConceptsResponseSchema {
+export interface WorksResponse {
     /**
      * 
      * @type {any}
-     * @memberof ConceptsResponseSchema
+     * @memberof WorksResponse
      */
     groupBy?: any | null;
     /**
      * 
      * @type {Meta}
-     * @memberof ConceptsResponseSchema
+     * @memberof WorksResponse
      */
-    meta?: Meta;
+    meta: Meta;
     /**
      * 
      * @type {any}
-     * @memberof ConceptsResponseSchema
+     * @memberof WorksResponse
      */
-    results?: any | null;
+    results: any | null;
 }
 
 /**
- * Check if a given object implements the ConceptsResponseSchema interface.
+ * Check if a given object implements the WorksResponse interface.
  */
-export function instanceOfConceptsResponseSchema(value: object): boolean {
+export function instanceOfWorksResponse(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "meta" in value;
+    isInstance = isInstance && "results" in value;
 
     return isInstance;
 }
 
-export function ConceptsResponseSchemaFromJSON(json: any): ConceptsResponseSchema {
-    return ConceptsResponseSchemaFromJSONTyped(json, false);
+export function WorksResponseFromJSON(json: any): WorksResponse {
+    return WorksResponseFromJSONTyped(json, false);
 }
 
-export function ConceptsResponseSchemaFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConceptsResponseSchema {
+export function WorksResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorksResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'groupBy': !exists(json, 'group_by') ? undefined : json['group_by'],
-        'meta': !exists(json, 'meta') ? undefined : MetaFromJSON(json['meta']),
-        'results': !exists(json, 'results') ? undefined : json['results'],
+        'meta': MetaFromJSON(json['meta']),
+        'results': json['results'],
     };
 }
 
-export function ConceptsResponseSchemaToJSON(value?: ConceptsResponseSchema | null): any {
+export function WorksResponseToJSON(value?: WorksResponse | null): any {
     if (value === undefined) {
         return undefined;
     }

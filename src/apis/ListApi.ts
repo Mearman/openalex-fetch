@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   ErrorMessage,
-  Works,
+  WorksResponse,
 } from '../models/index';
 import {
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
-    WorksFromJSON,
-    WorksToJSON,
+    WorksResponseFromJSON,
+    WorksResponseToJSON,
 } from '../models/index';
 
 export interface GetWorksRequest {
@@ -50,7 +50,7 @@ export class ListApi extends runtime.BaseAPI {
      * 
      * /works
      */
-    async getWorksRaw(requestParameters: GetWorksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Works>> {
+    async getWorksRaw(requestParameters: GetWorksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorksResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.apiKey !== undefined) {
@@ -114,14 +114,14 @@ export class ListApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorksFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => WorksResponseFromJSON(jsonValue));
     }
 
     /**
      * 
      * /works
      */
-    async getWorks(requestParameters: GetWorksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Works> {
+    async getWorks(requestParameters: GetWorksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorksResponse> {
         const response = await this.getWorksRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ApcPrices } from './ApcPrices';
+import {
+    ApcPricesFromJSON,
+    ApcPricesFromJSONTyped,
+    ApcPricesToJSON,
+} from './ApcPrices';
 import type { Ids } from './Ids';
 import {
     IdsFromJSON,
@@ -46,10 +52,10 @@ export interface Source {
     alternateTitles?: any | null;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {ApcPrices}
      * @memberof Source
      */
-    apcPrices?: { [key: string]: any; } | null;
+    apcPrices?: ApcPrices;
     /**
      * 
      * @type {any}
@@ -213,7 +219,7 @@ export function SourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): So
         
         'abbreviatedTitle': !exists(json, 'abbreviated_title') ? undefined : json['abbreviated_title'],
         'alternateTitles': !exists(json, 'alternate_titles') ? undefined : json['alternate_titles'],
-        'apcPrices': !exists(json, 'apc_prices') ? undefined : json['apc_prices'],
+        'apcPrices': !exists(json, 'apc_prices') ? undefined : ApcPricesFromJSON(json['apc_prices']),
         'apcUsd': !exists(json, 'apc_usd') ? undefined : json['apc_usd'],
         'citedByCount': !exists(json, 'cited_by_count') ? undefined : json['cited_by_count'],
         'countryCode': !exists(json, 'country_code') ? undefined : json['country_code'],
@@ -251,7 +257,7 @@ export function SourceToJSON(value?: Source | null): any {
         
         'abbreviated_title': value.abbreviatedTitle,
         'alternate_titles': value.alternateTitles,
-        'apc_prices': value.apcPrices,
+        'apc_prices': ApcPricesToJSON(value.apcPrices),
         'apc_usd': value.apcUsd,
         'cited_by_count': value.citedByCount,
         'country_code': value.countryCode,

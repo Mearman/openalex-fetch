@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './Apc';
+export * from './ApcPrices';
 export * from './AssociatedInstitution';
 export * from './Author';
 export * from './Authors';
@@ -55,4 +56,5 @@ export * from './WorkAttributes';
 export * from './WorkBiblio';
 export * from './WorkCitedByPercentileYear';
 export * from './WorkOpenAccess';
-export * from './Works';
+export * from './WorkSchema';
+export * from './WorksResponse';

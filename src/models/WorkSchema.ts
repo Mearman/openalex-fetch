@@ -31,24 +31,24 @@ import {
     LocationFromJSONTyped,
     LocationToJSON,
 } from './Location';
-import type { WorkSchemaBiblio } from './WorkSchemaBiblio';
+import type { WorkBiblio } from './WorkBiblio';
 import {
-    WorkSchemaBiblioFromJSON,
-    WorkSchemaBiblioFromJSONTyped,
-    WorkSchemaBiblioToJSON,
-} from './WorkSchemaBiblio';
-import type { WorkSchemaCitedByPercentileYear } from './WorkSchemaCitedByPercentileYear';
+    WorkBiblioFromJSON,
+    WorkBiblioFromJSONTyped,
+    WorkBiblioToJSON,
+} from './WorkBiblio';
+import type { WorkCitedByPercentileYear } from './WorkCitedByPercentileYear';
 import {
-    WorkSchemaCitedByPercentileYearFromJSON,
-    WorkSchemaCitedByPercentileYearFromJSONTyped,
-    WorkSchemaCitedByPercentileYearToJSON,
-} from './WorkSchemaCitedByPercentileYear';
-import type { WorkSchemaOpenAccess } from './WorkSchemaOpenAccess';
+    WorkCitedByPercentileYearFromJSON,
+    WorkCitedByPercentileYearFromJSONTyped,
+    WorkCitedByPercentileYearToJSON,
+} from './WorkCitedByPercentileYear';
+import type { WorkOpenAccess } from './WorkOpenAccess';
 import {
-    WorkSchemaOpenAccessFromJSON,
-    WorkSchemaOpenAccessFromJSONTyped,
-    WorkSchemaOpenAccessToJSON,
-} from './WorkSchemaOpenAccess';
+    WorkOpenAccessFromJSON,
+    WorkOpenAccessFromJSONTyped,
+    WorkOpenAccessToJSON,
+} from './WorkOpenAccess';
 
 /**
  * 
@@ -88,10 +88,10 @@ export interface WorkSchema {
     bestOaLocation?: Location;
     /**
      * 
-     * @type {WorkSchemaBiblio}
+     * @type {WorkBiblio}
      * @memberof WorkSchema
      */
-    biblio?: WorkSchemaBiblio;
+    biblio?: WorkBiblio;
     /**
      * 
      * @type {any}
@@ -106,10 +106,10 @@ export interface WorkSchema {
     citedByCount?: any | null;
     /**
      * 
-     * @type {WorkSchemaCitedByPercentileYear}
+     * @type {WorkCitedByPercentileYear}
      * @memberof WorkSchema
      */
-    citedByPercentileYear?: WorkSchemaCitedByPercentileYear;
+    citedByPercentileYear?: WorkCitedByPercentileYear;
     /**
      * 
      * @type {any}
@@ -238,10 +238,10 @@ export interface WorkSchema {
     ngramsUrl?: any | null;
     /**
      * 
-     * @type {WorkSchemaOpenAccess}
+     * @type {WorkOpenAccess}
      * @memberof WorkSchema
      */
-    openAccess?: WorkSchemaOpenAccess;
+    openAccess?: WorkOpenAccess;
     /**
      * 
      * @type {Location}
@@ -336,10 +336,10 @@ export function WorkSchemaFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'apcPaid': !exists(json, 'apc_paid') ? undefined : ApcFromJSON(json['apc_paid']),
         'authorships': !exists(json, 'authorships') ? undefined : json['authorships'],
         'bestOaLocation': !exists(json, 'best_oa_location') ? undefined : LocationFromJSON(json['best_oa_location']),
-        'biblio': !exists(json, 'biblio') ? undefined : WorkSchemaBiblioFromJSON(json['biblio']),
+        'biblio': !exists(json, 'biblio') ? undefined : WorkBiblioFromJSON(json['biblio']),
         'citedByApiUrl': !exists(json, 'cited_by_api_url') ? undefined : json['cited_by_api_url'],
         'citedByCount': !exists(json, 'cited_by_count') ? undefined : json['cited_by_count'],
-        'citedByPercentileYear': !exists(json, 'cited_by_percentile_year') ? undefined : WorkSchemaCitedByPercentileYearFromJSON(json['cited_by_percentile_year']),
+        'citedByPercentileYear': !exists(json, 'cited_by_percentile_year') ? undefined : WorkCitedByPercentileYearFromJSON(json['cited_by_percentile_year']),
         'concepts': !exists(json, 'concepts') ? undefined : json['concepts'],
         'correspondingAuthorIds': !exists(json, 'corresponding_author_ids') ? undefined : json['corresponding_author_ids'],
         'correspondingInstitutionIds': !exists(json, 'corresponding_institution_ids') ? undefined : json['corresponding_institution_ids'],
@@ -361,7 +361,7 @@ export function WorkSchemaFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'locationsCount': !exists(json, 'locations_count') ? undefined : json['locations_count'],
         'mesh': !exists(json, 'mesh') ? undefined : json['mesh'],
         'ngramsUrl': !exists(json, 'ngrams_url') ? undefined : json['ngrams_url'],
-        'openAccess': !exists(json, 'open_access') ? undefined : WorkSchemaOpenAccessFromJSON(json['open_access']),
+        'openAccess': !exists(json, 'open_access') ? undefined : WorkOpenAccessFromJSON(json['open_access']),
         'primaryLocation': !exists(json, 'primary_location') ? undefined : LocationFromJSON(json['primary_location']),
         'publicationDate': !exists(json, 'publication_date') ? undefined : json['publication_date'],
         'publicationYear': !exists(json, 'publication_year') ? undefined : json['publication_year'],
@@ -390,10 +390,10 @@ export function WorkSchemaToJSON(value?: WorkSchema | null): any {
         'apc_paid': ApcToJSON(value.apcPaid),
         'authorships': value.authorships,
         'best_oa_location': LocationToJSON(value.bestOaLocation),
-        'biblio': WorkSchemaBiblioToJSON(value.biblio),
+        'biblio': WorkBiblioToJSON(value.biblio),
         'cited_by_api_url': value.citedByApiUrl,
         'cited_by_count': value.citedByCount,
-        'cited_by_percentile_year': WorkSchemaCitedByPercentileYearToJSON(value.citedByPercentileYear),
+        'cited_by_percentile_year': WorkCitedByPercentileYearToJSON(value.citedByPercentileYear),
         'concepts': value.concepts,
         'corresponding_author_ids': value.correspondingAuthorIds,
         'corresponding_institution_ids': value.correspondingInstitutionIds,
@@ -415,7 +415,7 @@ export function WorkSchemaToJSON(value?: WorkSchema | null): any {
         'locations_count': value.locationsCount,
         'mesh': value.mesh,
         'ngrams_url': value.ngramsUrl,
-        'open_access': WorkSchemaOpenAccessToJSON(value.openAccess),
+        'open_access': WorkOpenAccessToJSON(value.openAccess),
         'primary_location': LocationToJSON(value.primaryLocation),
         'publication_date': value.publicationDate,
         'publication_year': value.publicationYear,

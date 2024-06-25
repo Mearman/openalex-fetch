@@ -38,7 +38,7 @@ import type {
   Topic,
   Topics,
   Work,
-  Works,
+  WorksResponse,
 } from '../models/index';
 import {
     AuthorFromJSON,
@@ -87,8 +87,8 @@ import {
     TopicsToJSON,
     WorkFromJSON,
     WorkToJSON,
-    WorksFromJSON,
-    WorksToJSON,
+    WorksResponseFromJSON,
+    WorksResponseToJSON,
 } from '../models/index';
 
 export interface GetAuthorRequest {
@@ -2122,7 +2122,7 @@ export class OpenAlexApi extends runtime.BaseAPI {
      * 
      * /works
      */
-    async getWorksRaw(requestParameters: GetWorksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Works>> {
+    async getWorksRaw(requestParameters: GetWorksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorksResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.apiKey !== undefined) {
@@ -2186,14 +2186,14 @@ export class OpenAlexApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorksFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => WorksResponseFromJSON(jsonValue));
     }
 
     /**
      * 
      * /works
      */
-    async getWorks(requestParameters: GetWorksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Works> {
+    async getWorks(requestParameters: GetWorksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorksResponse> {
         const response = await this.getWorksRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -16,60 +16,30 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface WorkSchemaCitedByPercentileYear
+ * @interface ApcPrices
  */
-export interface WorkSchemaCitedByPercentileYear {
-    /**
-     * 
-     * @type {any}
-     * @memberof WorkSchemaCitedByPercentileYear
-     */
-    max: any | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof WorkSchemaCitedByPercentileYear
-     */
-    min: any | null;
+export interface ApcPrices {
+    [key: string]: any;
 }
 
 /**
- * Check if a given object implements the WorkSchemaCitedByPercentileYear interface.
+ * Check if a given object implements the ApcPrices interface.
  */
-export function instanceOfWorkSchemaCitedByPercentileYear(value: object): boolean {
+export function instanceOfApcPrices(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "max" in value;
-    isInstance = isInstance && "min" in value;
 
     return isInstance;
 }
 
-export function WorkSchemaCitedByPercentileYearFromJSON(json: any): WorkSchemaCitedByPercentileYear {
-    return WorkSchemaCitedByPercentileYearFromJSONTyped(json, false);
+export function ApcPricesFromJSON(json: any): ApcPrices {
+    return ApcPricesFromJSONTyped(json, false);
 }
 
-export function WorkSchemaCitedByPercentileYearFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkSchemaCitedByPercentileYear {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'max': json['max'],
-        'min': json['min'],
-    };
+export function ApcPricesFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApcPrices {
+    return json;
 }
 
-export function WorkSchemaCitedByPercentileYearToJSON(value?: WorkSchemaCitedByPercentileYear | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'max': value.max,
-        'min': value.min,
-    };
+export function ApcPricesToJSON(value?: ApcPrices | null): any {
+    return value;
 }
 
