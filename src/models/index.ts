@@ -84,7 +84,6 @@ export * from './WorkKeywordsInner';
 export * from './WorkMeshInner';
 export * from './WorkOpenAccess';
 export * from './WorkSchema';
-export * from './WorkSelectSchema';
 export * from './WorkSustainableDevelopmentGoalsInner';
 export * from './WorksArray';
 export * from './WorksResponse';
